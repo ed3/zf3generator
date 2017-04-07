@@ -1,0 +1,19 @@
+<form method="post">
+<div class="form-group">
+	<label>Select Module</label>
+	<select name="module" class="form-control input-sm">
+	<?php foreach ($modules as $module): ?>
+	<option value="<?php echo $module ?>"><?php echo $module ?></option>
+	<?php endforeach; ?>
+	</select>
+</div>
+<div class="form-group">
+<label>Controller Name</label> <small>(Don't include 'Controller' in name)</small>
+<input type="text" name="controller_name" class="form-control input-sm" />
+</div>
+<div class="form-group">
+	<label>Action(s) Name</label> <small>(Comma separated; Don't include 'Action' in name)</small>
+	<input type="text" name="action_name" class="form-control input-sm" />
+</div>
+<input type="submit" class="btn btn-block btn-sm btn-primary" value="Generate Controller" /> 
+</form>
