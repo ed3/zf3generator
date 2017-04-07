@@ -1,0 +1,19 @@
+<form method="post">
+<div class="form-group">
+<label>Select Module</label>
+<select name="module" class="form-control input-sm">
+<?php foreach ($modules as $module): ?>
+<option value="<?php echo $module ?>"><?php echo $module ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+<div class="form-group">
+<label>Select Table</label>
+<select name="table" class="form-control input-sm">
+<?php foreach ($tables as $table): ?>
+<option value="<?php echo $table ?>"><?php echo $table ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+<input type="submit" class="btn btn-block btn-sm btn-primary" value="Generate Form" /> 
+</form>
