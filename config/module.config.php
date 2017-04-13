@@ -1,10 +1,11 @@
 <?php
 namespace Generator;
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 return [
 	'controllers' => [
-		'invokables' => [
-		'Generator\Controller\Index' => 'Generator\Controller\IndexController'
+		'factories' => [
+		Controller\IndexController::class => InvokableFactory::class,
 		],
 	],
 	'router' => [
