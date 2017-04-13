@@ -1,7 +1,7 @@
 <?php
 return [
 	'controllers' => [
-		'invokables' => [
+		'factories' => [
 		],
 	],
 	'router' => [

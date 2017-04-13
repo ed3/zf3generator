@@ -188,9 +188,11 @@ class Generator {
 		$count = $count == null ? 1 : $count;
 		foreach ($array as $key => $config) {
 		$intends = $this->getIntends($count);
-		if ($key != 'template_path_stack' || is_int($key)) {
-		if (!is_array($config)) {
-		$content .= "$intends'$key' => '$config',\n";
+		if($key != 'template_path_stack' || is_int($key)) {
+		if(!is_array($config)) {
+		if(strpos($config,"::") === false) $config = "'$config'";
+		if(strpos($key,"::") === false) $key = "'$key'";
+		$content .= "{$intends}$key => $config,\n";
 		} else {
 		$content .= "$intends'$key' => [\n";
 		$content .= $this->writeConfig($config, $content, $count + 1);
@@ -240,9 +242,9 @@ class Generator {
 		$moduleConfig = $this->getModuleConfig($moduleName);
 		$controllerName = ucfirst($controllerName);
 		$controllerFullName = $controllerName . 'Controller';
-		$moduleConfig['controllers']['invokables']["$moduleName\Controller\\$controllerName"] = "$moduleName\Controller\\$controllerFullName";
+		$moduleConfig['controllers']['factories']["Controller\\$controllerFullName::class"] = 'InvokableFactory::class';
 		$controllerRouter = [
-		'type' => 'segment',
+		'type' => 'Segment::class',
 		'options' => [
 		'route' => '/'.strtolower($controllerName) . '[/:action[/:id]]',
 		'constraints' => [
@@ -250,16 +252,16 @@ class Generator {
 		'id' => '[0-9]+',
 		],
 		'defaults' => [
-		'controller' => "$moduleName\Controller\\$controllerName",
+		'controller' => "Controller\\$controllerFullName::class",
 		'action' => 'index',
 		],
 		],
 		];
 		$moduleConfig['router']['routes'][strtolower($controllerName)] = $controllerRouter;
 		$handle = fopen('module.config.php', 'w+');
-		$content = "<?php\nnamespace $moduleName;\nreturn [\n";
-		$content .= $this->writeConfig($moduleConfig);
-		$content .= "];";
+		$content = "<?php\nnamespace $moduleName;\n";
+		$content .= "use Zend\\Router\\Http\Segment;\nuse Zend\\ServiceManager\\Factory\\InvokableFactory;\n";
+		$content .= "return [\n" . $this->writeConfig($moduleConfig) ."];";
 		fwrite($handle, $content);
 		return;
 	}
