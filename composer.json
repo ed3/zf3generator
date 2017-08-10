@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Generator\\": "module/Generator/src/"
+            "Generator\\": "src/"
         }
     },
     "extra": {
