@@ -13,11 +13,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Generator\\": "/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
+            "Generator\\": "src/"
+        }
     },
     "extra": {
         "zf": {
