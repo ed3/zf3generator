@@ -1,6 +1,6 @@
 {
     "name": "ed3/zf3generator",
-    "description": "Zend Framework 3 module to build xml model",
+    "description": "Zend Framework 3 module to build a generator",
     "type": "library",
     "homepage": "https://github.com/ed3/zf3generator",
     "keywords": [
