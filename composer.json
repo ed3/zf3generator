@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Generator\\": "module/Generator/"
+            "Generator\\": "src/"
         },
         "classmap": [
             "./Module.php"
