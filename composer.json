@@ -18,5 +18,10 @@
         "classmap": [
             "./Module.php"
         ]
+    },
+    "extra": {
+        "zf": {
+            "module": "Generator"
+        }
     }
 }
